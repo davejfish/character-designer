@@ -46,16 +46,17 @@ const phraseInput = addPhraseSection.querySelector('input');
 const phraseButton = addPhraseSection.querySelector('button');
 
 function handleAddPhrase() {
-    // *** add the current phrase value to the character phrases
-    character.phrases = phraseInput.value;
-    displayPhrases();
-    phraseInput.value = '';
-    phraseInput.focus();
+    if (phraseInput.value) {
+        // *** add the current phrase value to the character phrases
+        character.phrases.push(phraseInput.value);
+        displayPhrases();
+        phraseInput.value = '';
+        phraseInput.focus();
+    }
 }
 
 // *** Add a click handler to the phrase button that calls handleAddPhrase
 phraseButton.addEventListener('click', () => {
-    console.log(character.phrases);
     handleAddPhrase();
 });
 
@@ -87,10 +88,14 @@ function displayPhrases() {
     phraseList.innerHTML = '';
 
     // ** Create an li for each phrase and append to the list
-    const newList = document.createElement('li');
-    if (phraseList) {
+    for (let i of character.phrases) {
+        let newList = document.createElement('li');
+        newList.textContent = i;
+        console.log('i = ', i);
         phraseList.append(newList);
     }
+    
+    
 }
 
 // page load actions
