@@ -91,11 +91,8 @@ function displayPhrases() {
     for (let i of character.phrases) {
         let newList = document.createElement('li');
         newList.textContent = i;
-        console.log('i = ', i);
         phraseList.append(newList);
-    }
-    
-    
+    }    
 }
 
 // page load actions
